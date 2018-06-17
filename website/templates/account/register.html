@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Create an account{% endblock %}
+{% block content %}
+<html>
+<style>
+body{
+  width: auto;
+  background-image: url("/static/images/docsignup.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 10%;
+}
+</style>
+
+<script>
+function removeHelpText() {
+  var parent = document.getElementsByClassName("registration-form")[0];
+  var child = document.getElementByClassName("helptext");
+  parent.removeChild(child);
+}
+</script>
+<body>
+  <h1><br></h1>
+<div class="registration-form" onload="removeHelpText()">
+<form action="." method="post">
+    {{ user_form.as_p }}
+    {% csrf_token %}
+    <p class="pad" ><input type="submit" value="Create my account"></p>
+
+</form>
+</div>
+{% endblock %}
+</body>
+</html>

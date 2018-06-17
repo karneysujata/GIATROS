@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+<script>
+function notPossible(){
+  alert("The selected Doctor is not registered with our system");
+}
+</script>
+
+<div class="row" style="text-align: center">
+   <div class="col-sm-4">
+     <div class="form-group">
+          <form action="." method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            {{ search_form.attribute }}
+          </div>
+          <div class="form-group">
+            {{ search_form.search }}
+          </div>
+         </div>
+          <input class="btn btn-raised btn-success text-center" type="submit" value="Search">
+        </div>
+      </form>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+
+
+{% for doctor in doctors %}
+<div class="w-75 mx-auto">
+  <div style=" box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);"
+        class="card w-100 bg-dark text-secondary mb-3">
+    <div class="card-header bg-dark text-secondary">{{ doctor.address }}
+    </div>
+    <div class="card-body">
+    <p class="card-text" float="right">
+      <img border="1" style="float: right; margin-right: 15px" src="https://picsum.photos/200/300?image={{ doctor.digit }}" width="200" height="200">
+    </p>
+    <h4 class="card-title text-info">{{ doctor.user.first_name }} {{ doctor.user.last_name }}</h4>
+    <p class="card-text">Organization:{{ doctor.organization }}</p>
+    <p class="card-text">Specialization:{{ doctor.specialization }}</p>
+    <p class="card-text">Insurance Accepted:{{ doctor.insurance }}</p>
+    <p class="card-text">Rating:{{ doctor.rating }}</p>
+    {% if doctor.digit > 0 %}
+    <a style="text-dark" href="#" onclick="notPossible()" class="btn btn-raised active btn-info">Make an Appointment</a>
+    {% else %}
+    <a style="text-dark" href="{% url 'makeAppointment' doctor.id_num %}" class="btn btn-raised active btn-info">Make an Appointment</a>
+    {% endif %}
+    </p>
+  </div>
+</div>
+<br>
+</div>
+ {% endfor %}
+{% endblock %}

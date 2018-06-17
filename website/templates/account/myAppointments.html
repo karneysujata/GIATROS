@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}My Appointments{% endblock %}
+
+{% block content %}
+{% for appointment in my_appointments %}
+<script>
+  function status(){
+    alert("Appointment deleted Successful!")
+  }
+</script>
+<div class="w-50 mx-auto" style="margin-top:14px">
+  <div style=" box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);"
+        class="card w-100 bg-dark text-secondary mb-3">
+    <div class="card-header bg-dark text-secondary">
+    </div>
+    <div class="card-body">
+
+    <h4 class="card-title text-info"><p style="color:red">Doctor Name:{{ appointment.doc.user.first_name }} {{ appointment.doc.user.last_name }}</p></h4>
+    <p class="card-text">Date:{{ appointment.scheduled_date }}</p>
+    <p class="card-text">Time:{{ appointment.scheduled_time }}</p>
+    <a style="text-dark;float:right" href="{% url 'deleteAppointment' appointment.doc.id_num %}" class="btn btn-raised active btn-info" onclick="status()">Delete Appointment</a>
+    </p>
+  </div>
+</div>
+<br>
+</div>
+{% endfor %}
+
+{% endblock %}
