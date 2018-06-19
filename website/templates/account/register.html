@@ -1,16 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Create an account{% endblock %}
 {% block content %}
-<html>
-<style>
-body{
-  width: auto;
-  background-image: url("/static/images/docsignup.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 10%;
-}
-</style>
 
 <script>
 function removeHelpText() {
@@ -20,15 +10,16 @@ function removeHelpText() {
 }
 </script>
 <body>
-  <h1><br></h1>
-<div class="registration-form" onload="removeHelpText()">
-<form action="." method="post">
-    {{ user_form.as_p }}
-    {% csrf_token %}
-    <p class="pad" ><input type="submit" value="Create my account"></p>
+    <div class="container-fluid p-5">
+      <div class="row ">
+        <div class="col-sm-6 offset-4">
+          <form action="." method="post">
+              {{ user_form.as_p }}
+              {% csrf_token %}
+              <p> <input type="submit" value="Create my account"></p>
+          </form>
+        </div>
+      </div>
+    </div>
 
-</form>
-</div>
 {% endblock %}
-</body>
-</html>
