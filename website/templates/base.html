@@ -8,82 +8,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-  <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css" integrity="sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I" crossorigin="anonymous">
-  <!-- embedded css -->
-  <style media="screen">
-    #logo-banner{
-      background-image: url("{% static 'images/volunteer.png' %}" );
-      height: 23vmin;
-    }
-    #header-title{
-      color:white;
-      text-align: center;
-      vertical-align:middle;
-      padding: 40px;
-      font-family: LemonMilk;
-      font-size: 5vw;
-    }
-
-    @font-face { font-family: LemonMilk; src: url("{% static 'images/LemonMilk.otf' %}"); }
-    @font-face { font-family: Multicolore; src: url("{% static 'images/Multicolore.otf' %}"); }
-  </style>
+  <link rel="stylesheet" href="{%static 'css/bootstrap.css' %}">
 
 </head>
 <body>
-<div class="container-fluid" id="logo-banner" style="background: #283048">
-
-     <h1 style=" text-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);" class="lead" id="header-title">GIATROS</h1>
-</div>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        {% if amIdoc %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url "doc_apps" %}">Upcoming Appointments</a>
-        </li>
-        {% endif %}
-        {% if user.is_authenticated and not amIdoc %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url "index" %}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url "my_apps" %}">My Appointments</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">My HealthRecords</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url "edit" %}">My Profile</a>
-        </li>
-      {% endif %}
-      {% if not user.is_authenticated %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url "index" %}">Home</a>
-      </li>
-      {% endif %}
-
-      </ul>
-
-       <ul class="nav navbar-nav navbar-right">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img src="{%static 'images/docAnimated.jpg'%}" width="40" alt="doc img">
+        <a class="navbar-brand" href="#">Giatros</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            {% if amIdoc %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "doc_apps" %}">Upcoming Appointments</a>
+                </li>
+            {% endif %}
+            {% if user.is_authenticated and not amIdoc %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "index" %}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "my_apps" %}">My Appointments</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">My HealthRecords</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "edit" %}">My Profile</a>
+                </li>
+            {% endif %}
+          </ul>
+          <ul class="navbar-nav ml-auto">
                {% if user.is_authenticated %}
-               <li class="nav-item">
-               <a style="margin-left: 13px;" class="btn rounded btn-outline-warning btn-sm" href="{% url "password_change" %}">Change Password</a>
-               </li>
-                   <li><a style="margin-left: 13px;" class="btn rounded btn-outline-danger btn-sm" href="{% url "logout" %}" role="button">Sign Out</a></li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="{% url "password_change" %}">Change Password <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url "logout" %}">Signout</a>
+                  </li>
                {% else %}
-                   <li><a class="btn rounded btn-outline-info btn-sm" href="{% url 'register' %}" role="button">Register</a>
-                     <a style="margin-left: 13px;" class="btn rounded btn-outline-success btn-sm" href="{% url 'login' %}" role="button">Sign in</a></li>
+                  <li class="nav-item active">
+                      <a class="nav-link" href="{% url "index" %}">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href={% url 'register' %}>Register</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'login' %}">Signin</a>
+                   </li>
+                   
                {% endif %}
-       </ul>
-    </div>
+          </ul>
+        </div>
   </nav>
-
 
   {% block content %}
 
