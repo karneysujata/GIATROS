@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}About Giatros - Agents{% endblock %}
+{% block content %}
+<div class="container p-5">
+  <h1>About Giatros</h1>
+  <p class="lead">
+    Giatros is a healthcare appointment platform that connects patients with doctors.
+    The system involves two primary agents, each with distinct roles and capabilities.
+  </p>
+
+  <hr>
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+          <h4 class="mb-0">Patient Agent</h4>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            A <strong>Patient</strong> is a registered user who is seeking medical care.
+            Patients can:
+          </p>
+          <ul>
+            <li>Search for doctors by specialization, insurance, or location</li>
+            <li>Browse doctor profiles and ratings</li>
+            <li>Schedule appointments with available doctors</li>
+            <li>View and manage their upcoming appointments</li>
+            <li>Maintain a personal health profile</li>
+          </ul>
+          <p>
+            To become a patient, <a href="{% url 'register' %}">create an account</a>
+            and sign in to access the full suite of patient features.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+          <h4 class="mb-0">Doctor Agent</h4>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            A <strong>Doctor</strong> is a registered medical practitioner listed on the platform.
+            Doctors can:
+          </p>
+          <ul>
+            <li>Maintain a public profile with their specialization and accepted insurance</li>
+            <li>List their organization and contact details</li>
+            <li>View all upcoming patient appointments</li>
+            <li>Manage appointment schedules</li>
+          </ul>
+          <p>
+            Doctors are registered by the platform administrators and are associated with a
+            verified user account.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          <h4 class="mb-0">How the Agents Interact</h4>
+        </div>
+        <div class="card-body">
+          <p>
+            The Giatros platform acts as an intermediary that facilitates communication and
+            scheduling between patients and doctors:
+          </p>
+          <ol>
+            <li>A <strong>Patient</strong> searches for a doctor based on location, specialization, or accepted insurance.</li>
+            <li>The platform returns a list of matching <strong>Doctor</strong> profiles.</li>
+            <li>The <strong>Patient</strong> selects a doctor and schedules an appointment for a preferred date and time.</li>
+            <li>The <strong>Doctor</strong> can review all upcoming appointments through their dashboard.</li>
+            <li>Both agents can manage their profiles to keep information current.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
